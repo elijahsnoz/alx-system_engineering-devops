@@ -23,4 +23,3 @@ while [ $counter -le 20 ]; do
     esac
     ((counter++))
 done
-
