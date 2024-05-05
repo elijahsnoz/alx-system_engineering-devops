@@ -7,7 +7,11 @@ while [ $hours -le 12 ]; do
     while [ $minutes -le 59 ]; do
         printf "%02d:%02d\n" $hours $minutes
         ((minutes++))
+        if [ $hours -eq 12 ] && [ $minutes -eq 59 ]; then
+            exit 0
+        fi
     done
     ((hours++))
-    minutes=0
+    minutes=1
 done | head -n 70
+
