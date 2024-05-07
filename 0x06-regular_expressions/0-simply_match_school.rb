@@ -1,8 +1,4 @@
 #!/usr/bin/env ruby
 
-regex = /School/
-
-if ARGV[0] =~ regex
-  puts ARGV[0]
-end
+puts ARGV[0] if ARGV[0] =~ /School/
 
