@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
+# Displays listening ports. Includes listening sockets as well
+# + as the PID and name of the program to which each socket belongs.
 
-# Display listening TCP ports
-echo "Listening TCP ports:"
-netstat -lt --program | awk '$1 == "tcp" && NR > 2 {print $4 "\t" $7}'
-
-# Display listening UDP ports
-echo -e "\nListening UDP ports:"
-netstat -lu --program | awk '$1 == "udp" && NR > 2 {print $4 "\t" $7}'
-
+netstat -l --program
