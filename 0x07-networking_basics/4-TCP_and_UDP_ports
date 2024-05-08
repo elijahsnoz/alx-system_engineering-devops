@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Display listening TCP ports
+echo "Listening TCP ports:"
+netstat -lt --program | awk '$1 == "tcp" && NR > 2 {print $4 "\t" $7}'
+
+# Display listening UDP ports
+echo -e "\nListening UDP ports:"
+netstat -lu --program | awk '$1 == "udp" && NR > 2 {print $4 "\t" $7}'
+
