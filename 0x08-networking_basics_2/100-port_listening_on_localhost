@@ -1,7 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/env bash
 
 # Displaying a message to indicate the script is starting
 echo "Starting my script."
 
-# Using netcat to listen on port 98
-nc -l -p 98
+# Using netcat to continuously listen on port 98
+while true; do
+    nc -l -p 98
+done
