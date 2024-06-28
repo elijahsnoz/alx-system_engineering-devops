@@ -3,4 +3,3 @@
 exec { 'puppet-lint':
   command => '/usr/bin/pip install Flask==2.1.0',
 }
-
