@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Update the package list
+sudo apt-get update -y
+
+# Install nginx
+sudo apt-get install -y nginx
+
+# Create a custom HTML page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Start nginx service
+sudo service nginx start
+
+# Ensure nginx will start on boot
+sudo systemctl enable nginx
+
