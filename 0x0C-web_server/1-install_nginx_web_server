@@ -1,17 +1,12 @@
 #!/usr/bin/env bash
-
-# Update the package list
-sudo apt-get update -y
-
+#This script installs nginx
 # Install nginx
-sudo apt-get install -y nginx
 
-# Create a custom HTML page
-echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+# Configure nginx to listen on port 80 and serve "Hello World!" at the root
+sudo bash -c 'echo "Hello World!" > /var/www/html/index.html'
 
-# Start nginx service
-sudo service nginx start
-
-# Ensure nginx will start on boot
-sudo systemctl enable nginx
-
+# Restart nginx
+sudo service nginx restart
