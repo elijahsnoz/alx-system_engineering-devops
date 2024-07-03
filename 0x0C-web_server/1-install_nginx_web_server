@@ -1,12 +1,31 @@
 #!/usr/bin/env bash
-#This script installs nginx
+# This script installs nginx and configures it to serve a custom index page.
+
 # Install nginx
+apt-get update
+apt-get install -y nginx
 
-sudo apt-get update
-sudo apt-get -y install nginx
-sudo ufw allow 'Nginx HTTP'
-# Configure nginx to listen on port 80 and serve "Hello World!" at the root
-sudo bash -c 'echo "Hello World!" > /var/www/html/index.html'
+# Create custom index.html file
+echo "Hello World!" > /var/www/html/index.html
 
-# Restart nginx
-sudo service nginx restart
+# Ensure nginx is running
+if ! ps aux | grep -q '[n]ginx'; then
+    /usr/sbin/nginx
+fi
+
+# Check if nginx is listening on port 80
+nc -z localhost 80
+status=$?
+if [ $status -ne 0 ]; then
+    echo "Nginx is not listening on port 80"
+    exit 1
+fi
+
+# Test nginx configuration using curl
+response=$(curl -s localhost)
+if [ "$response" != "Hello World!" ]; then
+    echo "Failed: Nginx did not return expected content."
+    exit 1
+fi
+
+echo "Nginx successfully installed and configured."
