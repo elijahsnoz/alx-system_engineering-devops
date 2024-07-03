@@ -1,3 +1,32 @@
 #!/usr/bin/env bash
-# A Script that turns on an Apache Server container
-service apache2 start
+# Configures a new Ubuntu machine by installing Nginx,
+# setting it to listen on port 80, and serving a Hello World page.
+
+echo "Updating package list and installing Nginx..."
+sudo apt-get update -y -qq && \
+sudo apt-get install nginx -y
+
+echo "Setting up some minor stuff..."
+
+# Ensure nginx is started and enabled to start on boot
+sudo service nginx start
+sudo systemctl enable nginx
+
+# Allow HTTP traffic through firewall
+sudo ufw allow 'Nginx HTTP'
+
+# Set ownership and permissions for web files
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www/html
+
+# Backup default index file
+sudo cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bak
+
+# Create custom index file with "Hello World!"
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
+
+# Restart nginx to apply changes
+sudo service nginx restart
+
+echo "Nginx installation and configuration completed. ✅"
+
