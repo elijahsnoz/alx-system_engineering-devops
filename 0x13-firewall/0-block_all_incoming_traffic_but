@@ -1,8 +1,14 @@
-#!/usr/bin/env bash
-# Configures a ufw firewall to block all incoming traffic
-#+ except for TCP ports 22, 443 and 80.
+# Set the default policy to deny all incoming traffic
+sudo ufw default deny incoming
 
+# Allow incoming traffic on port 22 (SSH)
 sudo ufw allow 22/tcp
+
+# Allow incoming traffic on port 443 (HTTPS SSL)
 sudo ufw allow 443/tcp
+
+# Allow incoming traffic on port 80 (HTTP)
 sudo ufw allow 80/tcp
+
+# Enable UFW
 sudo ufw enable
