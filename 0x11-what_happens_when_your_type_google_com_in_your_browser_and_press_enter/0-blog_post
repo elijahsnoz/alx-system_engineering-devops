@@ -1,0 +1,54 @@
+What Happens When You Type https://www.google.com in Your Browser and Press EnterWhen you type https://www.google.com in your browser and press Enter, a complex series of processes is set into motion to deliver the web page to you. This blog post will break down each step of this process, focusing on DNS request, TCP/IP, Firewall, HTTPS/SSL, Load-balancer, Web server, Application server, and Database.
+
+1. DNS Request
+The first step in accessing https://www.google.com is resolving the domain name into an IP address. This is done through the Domain Name System (DNS). Here’s how it works:
+
+Local Cache: Your computer first checks its local DNS cache to see if it already knows the IP address for www.google.com.
+ISP DNS Server: If the IP address is not in the local cache, your computer queries the DNS server of your Internet Service Provider (ISP).
+Root DNS Servers: If the ISP’s DNS server doesn’t have the information, it queries the root DNS servers, which then direct the query to the appropriate Top-Level Domain (TLD) DNS server (in this case, the .com server).
+Authoritative DNS Server: The TLD DNS server will then point to Google’s authoritative DNS server, which holds the IP address for www.google.com.
+IP Address: The authoritative DNS server returns the IP address to your ISP’s DNS server, which caches it and forwards it to your computer.
+2. TCP/IP
+Once your browser has the IP address, it initiates a connection to the server using the Transmission Control Protocol (TCP) and Internet Protocol (IP):
+
+TCP Handshake: The browser establishes a TCP connection with Google’s server using a three-way handshake process:
+SYN: Your browser sends a SYN (synchronize) packet to Google’s server.
+SYN-ACK: Google’s server responds with a SYN-ACK (synchronize-acknowledge) packet.
+ACK: Your browser sends an ACK (acknowledge) packet back to Google’s server, establishing the connection.
+3. Firewall
+During the connection process, data packets pass through several firewalls:
+
+Local Firewall: Your computer’s firewall ensures the outgoing request is allowed.
+ISP Firewall: Your ISP’s firewall may also inspect the packets for security.
+Google’s Firewall: Google’s firewall checks incoming packets to protect its network from malicious traffic.
+4. HTTPS/SSL
+Since you are accessing a secure site (https://), the communication is encrypted using HTTPS (HyperText Transfer Protocol Secure):
+
+SSL/TLS Handshake: The browser and Google’s server perform an SSL/TLS handshake to establish a secure connection:
+ClientHello: Your browser sends a ClientHello message, including supported SSL/TLS versions and cipher suites.
+ServerHello: Google’s server responds with a ServerHello, selecting the SSL/TLS version and cipher suite.
+Certificate Exchange: Google’s server sends its SSL/TLS certificate, which your browser verifies.
+Key Exchange: Both parties exchange cryptographic keys to establish a secure session.
+5. Load Balancer
+Google uses load balancers to distribute incoming traffic across multiple servers to ensure reliability and efficiency:
+
+Request Distribution: The load balancer receives your request and forwards it to one of Google’s many web servers based on the current load and server availability.
+6. Web Server
+The web server is responsible for handling your HTTP request:
+
+Request Handling: The web server receives the request for https://www.google.com, processes it, and determines what content to serve.
+Static Content: If the request is for static content (like an image or CSS file), the web server retrieves it from the file system and sends it back to your browser.
+7. Application Server
+If the request requires dynamic content (such as search results), the web server forwards it to an application server:
+
+Processing Logic: The application server runs the backend logic required to generate the dynamic content. This may involve running scripts, querying databases, or interacting with other services.
+8. Database
+To generate dynamic content, the application server may need to query a database:
+
+Query Execution: The application server sends a query to the database server, which processes the request and returns the necessary data.
+Data Retrieval: The application server uses this data to create the dynamic content.
+Final Steps
+Response Assembly: The application server assembles the dynamic content and sends it back to the web server.
+Content Delivery: The web server sends the final response (HTML, CSS, JavaScript, etc.) back to your browser through the established TCP connection.
+Rendering: Your browser receives the response, parses the HTML, and renders the page. It may make additional requests for resources (images, stylesheets, scripts) as specified in the HTML.
+By understanding each of these steps, you gain a deeper appreciation for the complex processes involved in delivering a simple web page to your browser.
