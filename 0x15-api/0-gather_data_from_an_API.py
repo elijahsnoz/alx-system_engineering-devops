@@ -53,7 +53,7 @@ if __name__ == "__main__":
     completed = 0
     total = 0
     tasks = []
-    
+
     for todo in todos_data:
         if todo.get('userId') == employee_id:
             total += 1
