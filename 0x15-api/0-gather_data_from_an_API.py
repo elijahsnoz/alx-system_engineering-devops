@@ -8,6 +8,7 @@ returns information about his/her TODO list progress.
 from requests import get
 from sys import argv, exit
 
+
 def fetch_data(url):
     """Fetch data from a given URL and return JSON response."""
     try:
@@ -17,6 +18,7 @@ def fetch_data(url):
     except Exception as e:
         print(f"Error fetching data: {e}")
         exit(1)
+
 
 if __name__ == "__main__":
     if len(argv) != 2:
