@@ -1,6 +1,7 @@
-# This Puppet manifest fixes a typo in the file name by renaming it.
-exec { 'fix_typo':
-  command => 'mv /var/www/html/wp-includes/class-wp-locale.phpp /var/www/html/wp-includes/class-wp-locale.php',
-  path    => ['/bin', '/usr/bin'],
-  onlyif  => 'test -f /var/www/html/wp-includes/class-wp-locale.phpp',
+# strace, a process monitoring tool, i used to investigate why Apache was returning a 500 error
+
+file { '/var/www/html/wp-includes/class-wp-locale.phpp':
+  ensure => file,
+  source => '/var/www/html/wp-includes/class-wp-locale.php',
+  mode   => '0664'
 }
