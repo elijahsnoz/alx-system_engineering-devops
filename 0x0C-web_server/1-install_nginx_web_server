@@ -1,18 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Install nginx web server
+sudo apt-get update
+sudo apt-get install -y nginx
 
-# Update package list and install Nginx silently
-sudo apt-get update > /dev/null 2>&1
-sudo apt-get install -y nginx > /dev/null 2>&1
+# Create a custom HTML file with "Hello World!"
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
 
-# Create the index.html file with "Hello World!" content
-cat <<EOL | sudo tee /var/www/html/index.html > /dev/null
-Hello World!
-EOL
+sudo ufw allow "Nginx HTTP"
 
-# Ensure the correct permissions for the index.html file
-sudo chown www-data:www-data /var/www/html/index.html > /dev/null 2>&1
-sudo chmod 644 /var/www/html/index.html > /dev/null 2>&1
-
-# Reload Nginx to apply changes without using systemctl
-sudo nginx -s reload > /dev/null 2>&1
-
+# Restart Nginx to apply changes
+sudo service nginx restart
