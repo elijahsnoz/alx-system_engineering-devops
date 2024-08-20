@@ -10,3 +10,4 @@ sudo ufw allow "Nginx HTTP"
 
 # Restart Nginx to apply changes
 sudo service nginx restart
+
