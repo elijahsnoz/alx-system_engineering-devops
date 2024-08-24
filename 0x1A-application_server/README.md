@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE HTML>
 <HTML LANG='EN'>
 <BODY>
@@ -103,3 +104,6 @@ the part that comes after the domain name or IP Address/Port.
 </P>
 </BODY>
 </HTML>
+=======
+0x1A-application_server
+>>>>>>> 718ef4c752da9cc81ac0646eb40577eafe86cb96
