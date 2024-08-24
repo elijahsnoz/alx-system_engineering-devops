@@ -1,6 +1,6 @@
-# This Puppet manifest configures Nginx to handle a higher load by adjusting worker processes and connections
+# Change limit to requests that Nginx can handle
 
-exec { 'fix--for-nginx':
-  command => '/bin/sed -i "s/worker_connections 768;/worker_connections 4096;/" /etc/nginx/nginx.conf && service nginx restart',
+exec { 'change_limit_and_restart':
+    command  => 'sudo sed -i "s/15/4096/g" /etc/default/nginx; sudo service nginx restart',
+    provider => shell,
 }
-
